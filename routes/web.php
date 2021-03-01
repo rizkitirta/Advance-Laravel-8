@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuruController;
+use App\Http\Controllers\SiswaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/guru', [GuruController::class, 'index'])->name('view.guru');
+Route::get('/guru/detail/{id_guru}', [GuruController::class, 'detail']);
+Route::get('/guru/add', [GuruController::class, 'add']);
+Route::post('/guru/insert', [GuruController::class, 'insert']);
+Route::get('/guru/edit/{id_guru}', [GuruController::class, 'edit']);
+Route::post('/guru/update/{id_guru}', [GuruController::class, 'update']);
+Route::get('/guru/delete/{id_guru}', [GuruController::class, 'delete']);
+
+//siswa
+Route::get('/siswa', [SiswaController::class, 'index'])->name('view.siswa');
