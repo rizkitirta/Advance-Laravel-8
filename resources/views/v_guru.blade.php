@@ -12,6 +12,7 @@
             </div>
         @endif
         <a href="/guru/add" class="btn btn-sm btn-primary">Add</a>
+        <a href="/guru/cetak_pdf" target="_blank" class="btn btn-sm btn-success">Print Pdf</a>
         <table class="table table-bordered justify-content-center text-center mt-2">
             <thead class="bg-warning">
                 <tr>

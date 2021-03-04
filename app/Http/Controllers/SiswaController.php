@@ -10,6 +10,7 @@ class SiswaController extends Controller
     public function __construct()
     {
         $this->SiswaModel = new SiswaModel();
+        $this->middleware('auth');
     }
 
     public function index()

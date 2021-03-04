@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\GuruModel;
+use PDF;
 
 class GuruController extends Controller
 {
     public function __construct()
     {
         $this->GuruModel = new GuruModel();
+        $this->middleware('auth');
     }
 
     public function index()
@@ -117,14 +119,21 @@ class GuruController extends Controller
 
     public function delete($id_guru)
     {
-         //Delete Foto
-       $guru = $this->GuruModel->detailData($id_guru);
-       if($guru->foto_guru <> ""){
-           unlink(public_path('images'). '/'.$guru->foto_guru);
-       }
+        //Delete Foto
+        $guru = $this->GuruModel->detailData($id_guru);
+        if ($guru->foto_guru != "") {
+            unlink(public_path('images') . '/' . $guru->foto_guru);
+        }
 
         $this->GuruModel->deleteData($id_guru);
         return redirect()->route('view.guru')->with('pesan', 'Data Berhasil DiHapus');
+
+    }
+
+    public function cetakPdf()
+    {
+        $pdf = PDF::loadview('v_guru')->setPaper('A4', 'potrait');
+        return $pdf->stream();
 
     }
 
